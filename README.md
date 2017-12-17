@@ -47,7 +47,7 @@ A blank, example rails app was created. Now we can
 edit the rails files directly from the mac in the shared 
 volume directory.
 
-Copy 5 files from the repo to the example directory
+Copy files from the repo to the example directory
 
 ```
 cp Rails-Docker-Setup/Dockerfile example
@@ -57,7 +57,7 @@ cp Rails-Docker-Setup/database.yml example/config
 
 cd example
 ```
-kjsl dflskdjf lskdfj lskdj flskjdf lskdjf
+Edit the Gemfile to uncomment out the 'therubyracer' gem
 ```
 docker build -t example_tag .       # build the docker image tagged "example_tag"
 docker images                       # see all the images... now including this one
