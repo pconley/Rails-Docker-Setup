@@ -41,45 +41,55 @@ create a rails app from scratch with postgres
 ```
 cd app
 gem install rails
-# NOTE: --api (to make an api only app)
 rails new example -d postgresql --skip-bundle
 cd example
 ls -la
 exit 
 ```
 We are back on the host machine (mac).
-A blank, example rails app was created.  now we use
+A blank, example rails app was created. Now we can
 edit the rails files directly from the mac in the shared 
-volume directory... example
+volume directory.
 
+```
 cd example
+```
 
-# copy 5 files from the master to the example
+Copy 5 files from the repo to the example directory
 
-# 1. Dockerfile (defines the image)
-# 2. Gemfile (to include ruby racer)
-# 3. config/database.yml (for postgres setup)
-# 4. env_setting file (to match database.yml)
-# -. Note that the secrets.yml file also expects an environment variable
-# -. alter that string in the env_settings file
-# 5. docker-compose.yml (for a later step) 
+1. Dockerfile (defines the image)
+2. Gemfile (to include ruby racer)
+3. config/database.yml (for postgres setup)
+4. env_setting file (to match database.yml)
+-. Note that the secrets.yml file also expects an environment variable
+-. alter that string in the env_settings file
+5. docker-compose.yml (for a later step) 
 
-docker build -t talker_tag .      # build the docker image tagged "blog_tag"
-
-docker images                   # see all the images... including this one
-
-# delete the "blog_net" network if already exists
-
+```
+docker build -t example_tag .       # build the docker image tagged "example_tag"
+docker images                       # see all the images... now including this one
+```
+A "network" is the docker mechanism to communicate bewteen our two running container.  
+Delete the "example_net" network if already exists (from a previous attempt).
+```
 docker network ls               # see all networks
 docker network rm blog_net      # remove if it exists
 docker network create blog_net  # and create a new one
+```
 
+We need to be sure that the same values are used in the app and the db
+so use environment variable to set these vaules.
+```
+cat env_settings                # to see the environment variables
 . env_settings                  # set the environment variables
-echo $POSTGRES_USER             # to see that they are set
+echo $POSTGRES_USER             # check that they are set
+```
 
-# (manually) run a container from the standard postgres image
-# but makes use of the environment variables we set; note that
-# we use the network we just created; and give it a name "db"
+### Run the containers
+
+(manually) run a container from the standard postgres image
+but makes use of the environment variables we set; note that
+we use the network we just created; and give it a name "db"
 
 docker run -d \
     -e POSTGRES_USER=$POSTGRES_USER \
@@ -87,7 +97,7 @@ docker run -d \
     --net=talker_net --name db \
     postgres
 
-# now run the app in a container that is interactive
+now run the app in a container that is interactive
 
 docker run --rm -it \
     -v "$PWD:/usr/src/app" \
