@@ -135,7 +135,7 @@ docker run -d \
     -e POSTGRES_HOST=$POSTGRES_HOST \
     -e POSTGRES_USER=$POSTGRES_USER \
     -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
-    --net=blog_net --name app \
+    --net=example_net --name app \
     -v $PWD:/usr/src/app \
     example_tag
 ```
