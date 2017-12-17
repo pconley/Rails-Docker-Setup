@@ -7,6 +7,11 @@ Assumes that Docker is already installed.
 Does *not* require rails to be installed.
 All my work/testing was don on a Mac.
 Digital Ocean...
+### Download the File
+To you working directory
+```
+git clone https://github.com/pconley/Rails-Docker-Setup.git
+```
 ### Stop and Remove Containers
 Clean up running containers from any previous attempts.
 ```
