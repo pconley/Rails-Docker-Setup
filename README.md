@@ -19,13 +19,13 @@ docker ps -a                    # see all containers
 docker stop $(docker ps -a -q)  # stop all containers
 docker rm $(docker ps -a -q)    # remove all containers
 ```
-### Remove Images
-CAUTION: This deletes all images. Do this if you want a complete restart.  
+### Remove Previous Images
+This deletes any images from a previous run through.  
 ```
-docker images                   # list of all images
-docker rmi $(docker images -q)  # remove ALL images ever built
+docker images               # list of all images
+docker rmi example_tag      # remove provious images
 ```
-## Step 1
+## Step 1: Create the App
 Run the standard ruby image as a temporary container linked to the 
 current directory. We just to use it to create the rails app.
 Params are... remove after run; interactive; map a volume; open bash
