@@ -27,18 +27,14 @@ docker images                   # list of all images
 docker rmi $(docker images -q)  # remove ALL images ever built
 ```
 ## Step 1
-
 Run the standard ruby image as a temporary container linked to the 
 current directory. We just to use it to create the rails app.
 Params are... remove after run; interactive; map a volume; open bash
-
 ```
 docker run --rm -it -v "$PWD:/app" ruby:2.3 bash
 ```
-
 We are now in bash in the running container; so we
 create a rails app from scratch with postgres
-
 ```
 cd app
 gem install rails
@@ -51,11 +47,9 @@ We are back on the host machine (mac).
 A blank, example rails app was created. Now we can
 edit the rails files directly from the mac in the shared 
 volume directory.
-
 ```
 cd example
 ```
-
 Copy 5 files from the repo to the example directory
 
 1. Dockerfile (defines the image)
@@ -85,13 +79,11 @@ cat env_settings                # to see the environment variables
 . env_settings                  # set the environment variables
 echo $POSTGRES_USER             # check that they are set
 ```
-
+## Step: Run the Containers
 ### Run the DB container
-
 Manually, run a container from the standard postgres image
 but makes use of the environment variables we set; note that
 we use the network we just created; and give it a name "db"
-
 ```
 docker run -d \
     -e POSTGRES_USER=$POSTGRES_USER \
@@ -99,9 +91,7 @@ docker run -d \
     --net=example_net --name db \
     postgres
 ```
-
 ### Run the App (interactive)
-
 ```
 docker run --rm -it \
     -v "$PWD:/usr/src/app" \
@@ -112,7 +102,6 @@ docker run --rm -it \
     --net=example_net --name app \
     example_tag bash
 ```
-
 We are now inside the rails app container
 ```
 rake db:setup        # create the database over in the 
@@ -135,8 +124,7 @@ to see if the data persists.
 ctl-c   # kill the server
 exit    # back on the mac 
 ```
-
-## Step 3
+## Step 3: Run App in the Background
 Note the database is still running.  But now run the same app as a deamon; note that the dockerfile
 automatically starts the rails server
 ```
@@ -149,14 +137,15 @@ docker run -d \
     -v $PWD:/usr/src/app \
     blog_tag
 ```
+skdjflsdkjf sldkjf lskdfj lskdfj lskdfj lskdfj lskdfjlsdf lskdfj s
 ## Cleanup
-shut down all the containers
+shut down all the running containers
 ```
 docker ps -a                    # see all containers
 docker stop $(docker ps -a -q)  # stop all containers
 docker rm $(docker ps -a -q)    # remove all containers
 ```
-## Docker Compose
+## Step: Docker Compose
 Docker Compose uses the docker-compose.yml file to 
 automate all the complex commands that we did manually
 ```
@@ -180,13 +169,11 @@ docker-compose up -d                    # deamonize
 docker-compose stop                     # to stop deamon(s)
 docker ps                               # but they are still there
 ```
-
 ## Step 4: Docker Machine
-
 We use Docker Machine to manage virtual machines on which 
 we will deploy the containers; this walkthru uses DigitalOcean
 to host one machine... puts the two containers on that machine
-note: a DO account and access key was previously created!!!!
+Note: a DO account and access key was previously created!!!!
 
 first clean up any previous walthru attemps
 ```
