@@ -59,6 +59,10 @@ cd example
 ```
 Edit the Gemfile to uncomment out the 'therubyracer' gem
 ```
+vi Gemfile # or your favorite edito
+```
+Now build the docker image
+```
 docker build -t example_tag .       # build the docker image tagged "example_tag"
 docker images                       # see all the images... now including this one
 ```
