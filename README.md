@@ -13,20 +13,20 @@ Does *not* require rails to be installed.
 All my work/testing was don on a Mac.
 Digital Ocean...
 
-## Clean up from any previous attempts
-
 ### Stop and Remove Containers
+Clean up running containers from any previous attempts.
 ```
 docker ps -a                    # see all containers
 docker stop $(docker ps -a -q)  # stop all containers
 docker rm $(docker ps -a -q)    # remove all containers
 ```
-### Delete all images if you want a complete restart
+### Remove Images
+CAUTION: This deletes all images. Do this if you want a complete restart.  
 ```
 docker images                   # list of all images
-docker rmi $(docker images -q)  # CAUTION: removes ALL images ever built
+docker rmi $(docker images -q)  # remove ALL images ever built
 ```
-# Step 1
+## Step 1
 
 Run the standard ruby image as a temporary container linked to the 
 current directory. We just to use it to create the rails app.
@@ -136,7 +136,7 @@ ctl-c   # kill the server
 exit    # back on the mac 
 ```
 
-### Step 3
+## Step 3
 Note the database is still running.  But now run the same app as a deamon; note that the dockerfile
 automatically starts the rails server
 ```
@@ -149,26 +149,19 @@ docker run -d \
     -v $PWD:/usr/src/app \
     blog_tag
 ```
-
 ## Cleanup
-
 shut down all the containers
 ```
 docker ps -a                    # see all containers
 docker stop $(docker ps -a -q)  # stop all containers
 docker rm $(docker ps -a -q)    # remove all containers
 ```
-
 ## Docker Compose
-
 Docker Compose uses the docker-compose.yml file to 
 automate all the complex commands that we did manually
-
 ```
 docker-compose build                    # creates container with default name
-
 docker images                           # of example_app
-
 docker-compose run app rake db:setup db:migrate   # runs app container with a command
 
 docker ps -a                            # note that the DB also ran and continues
@@ -188,9 +181,9 @@ docker-compose stop                     # to stop deamon(s)
 docker ps                               # but they are still there
 ```
 
-### Docker Machine
+## Step 4: Docker Machine
 
-use Docker Machine to manage virtual machines on which 
+We use Docker Machine to manage virtual machines on which 
 we will deploy the containers; this walkthru uses DigitalOcean
 to host one machine... puts the two containers on that machine
 note: a DO account and access key was previously created!!!!
