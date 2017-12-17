@@ -16,23 +16,22 @@ All my work/testing was don on a Mac.
 Give examples
 ```
 
+## Clean up from any previous attempts
 
-# move the EXAMPLE directoy to an archive name (eg. example5)
-# if it exists from a previous walkthru
-
-mv example example999
-
-# clean up from any previous work
-
+## Stop and Remove Containers
+```
 docker ps -a                    # see all containers
 docker stop $(docker ps -a -q)  # stop all containers
 docker rm $(docker ps -a -q)    # remove all containers
+```
 
-# delete all images if you want a complete restart
+## Delete all images if you want a complete restart
 # CAUTION... removes ALL images you ever built
 
+```
 docker images
 docker rmi $(docker images -q)
+```
 
 # NOTE: reference files are in the master directory
 
