@@ -73,7 +73,6 @@ docker network ls                  # see all networks
 docker network rm example_net      # remove if it exists
 docker network create example_net  # and create a new one
 ```
-
 We need to be sure that the same values are used in the app and the db
 so use environment variable to set these vaules.  Note that the env_settings 
 is also used in the docker file.
@@ -109,7 +108,7 @@ We are now inside the rails app container
 ```
 rake db:setup        # create the database over in the 
 rake db:migrate      # may not be necessary 
-rail                 # run server; go to localhost:3000
+rail s               # run server; go to localhost:3000
 ctl-c                # to kill the server
 ```
 lets generate a bit more to the app
