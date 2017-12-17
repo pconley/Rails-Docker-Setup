@@ -1,18 +1,12 @@
 # Rails in Docker
-
 Build a simple rails application in two docker images... one for the db and one for the app.
-
 ## Getting Started
-
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
-
 Assumes that Docker is already installed.
 Does *not* require rails to be installed.
 All my work/testing was don on a Mac.
 Digital Ocean...
-
 ### Stop and Remove Containers
 Clean up running containers from any previous attempts.
 ```
@@ -67,13 +61,14 @@ docker images                       # see all the images... now including this o
 A "network" is the docker mechanism to communicate bewteen our two running container.  
 Delete the "example_net" network if already exists (from a previous attempt).
 ```
-docker network ls               # see all networks
-docker network rm blog_net      # remove if it exists
-docker network create blog_net  # and create a new one
+docker network ls                  # see all networks
+docker network rm example_net      # remove if it exists
+docker network create example_net  # and create a new one
 ```
 
 We need to be sure that the same values are used in the app and the db
-so use environment variable to set these vaules.
+so use environment variable to set these vaules.  Note that the env_settings 
+is also used in the docker file.
 ```
 cat env_settings                # to see the environment variables
 . env_settings                  # set the environment variables
@@ -135,7 +130,7 @@ docker run -d \
     -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
     --net=blog_net --name app \
     -v $PWD:/usr/src/app \
-    blog_tag
+    example_tag
 ```
 skdjflsdkjf sldkjf lskdfj lskdfj lskdfj lskdfj lskdfjlsdf lskdfj s
 ## Cleanup
