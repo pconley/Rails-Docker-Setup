@@ -1,0 +1,4 @@
+POSTGRES_USER=patconley
+POSTGRES_PASSWORD=abcd1234
+POSTGRES_HOST=db
+SECRET_KEY_BASE=thisshouldbesomeverylongrandomstringperproject

@@ -1,4 +1,21 @@
-# https://sourcey.com/building-the-prefect-rails-5-api-only-app/
+# Rails in Docker
+
+Build a simple rails application in two docker images... one for the db and one for the app.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+Assumes that Docker is already installed.
+Does *not* require rails to be installed.
+All my work/testing was don on a Mac.
+
+```
+Give examples
+```
+
 
 # move the EXAMPLE directoy to an archive name (eg. example5)
 # if it exists from a previous walkthru
