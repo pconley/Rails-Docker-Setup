@@ -46,19 +46,18 @@ We are back on the host machine (mac).
 A blank, example rails app was created. Now we can
 edit the rails files directly from the mac in the shared 
 volume directory.
-```
-cd example
-```
+
 Copy 5 files from the repo to the example directory
 
-1. Dockerfile (defines the image)
-2. Gemfile (to include ruby racer)
-3. config/database.yml (for postgres setup)
-4. env_setting file (to match database.yml)
--. Note that the secrets.yml file also expects an environment variable
--. alter that string in the env_settings file
-5. docker-compose.yml (for a later step) 
+```
+cp Rails-Docker-Setup/Dockerfile example
+cp Rails-Docker-Setup/env_settings example
+cp Rails-Docker-Setup/docker-compose.yml example
+cp Rails-Docker-Setup/database.yml example/config
 
+cd example
+```
+kjsl dflskdjf lskdfj lskdj flskjdf lskdjf
 ```
 docker build -t example_tag .       # build the docker image tagged "example_tag"
 docker images                       # see all the images... now including this one
