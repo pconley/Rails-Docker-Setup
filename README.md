@@ -12,49 +12,45 @@ Assumes that Docker is already installed.
 Does *not* require rails to be installed.
 All my work/testing was don on a Mac.
 
-```
-Give examples
-```
-
 ## Clean up from any previous attempts
 
-## Stop and Remove Containers
+### Stop and Remove Containers
 ```
 docker ps -a                    # see all containers
 docker stop $(docker ps -a -q)  # stop all containers
 docker rm $(docker ps -a -q)    # remove all containers
 ```
+### Delete all images if you want a complete restart
+```
+docker images                   # list of all images
+docker rmi $(docker images -q)  # CAUTION: removes ALL images ever built
+```
+# Step 1
 
-## Delete all images if you want a complete restart
-# CAUTION... removes ALL images you ever built
+Run the standard ruby image as a temporary container linked to the 
+current directory. We just to use it to create the rails app.
+Params are... remove after run; interactive; map a volume; open bash
 
 ```
-docker images
-docker rmi $(docker images -q)
-```
-
-# NOTE: reference files are in the master directory
-
-# run the ruby image as a temporary container linked to the 
-# current directory just to use it to create the rails app
-# remove after run; interactive; map volume; open bash
-
 docker run --rm -it -v "$PWD:/app" ruby:2.3 bash
+```
 
-# we are now in bash in the running container; so we
-# create a rails app from scratch with postgres
+We are now in bash in the running container; so we
+create a rails app from scratch with postgres
 
+```
 cd app
 gem install rails
 # NOTE: --api (to make an api only app)
 rails new example -d postgresql --skip-bundle
 cd example
 ls -la
-exit        # we are back on the mac
-
-# a blank, example rails app was created.  now we use
-# edit the rails files directly from the mac in the shared 
-# volume directory... example
+exit 
+```
+We are back on the host machine (mac).
+A blank, example rails app was created.  now we use
+edit the rails files directly from the mac in the shared 
+volume directory... example
 
 cd example
 
