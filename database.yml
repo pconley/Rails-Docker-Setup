@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: blog_development
+  database: example_development
 
 test:
   <<: *default
-  database: blog_test
+  database: example_test
 
 production:
   <<: *default
-  database: blog_production
+  database: example_production
