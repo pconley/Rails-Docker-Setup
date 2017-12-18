@@ -1,7 +1,9 @@
-# Rails in Docker
+# Rails in Docker (Work in Progress)
 Build a simple rails application in two docker images... one for the db and one for the app.
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### To Do
+- stop publishing the DO information
 ### Prerequisites
 Assumes that Docker is already installed.
 Does *not* require rails to be installed.
@@ -81,7 +83,7 @@ cat env_settings                # to see the environment variables
 . env_settings                  # set the environment variables
 echo $POSTGRES_USER             # check that they are set
 ```
-## Step: Run the Containers
+## Step 2: Run the Containers
 ### Run the DB container
 Manually, run a container from the standard postgres image
 but makes use of the environment variables we set; note that
@@ -127,8 +129,8 @@ ctl-c   # kill the server
 exit    # back on the mac 
 ```
 ## Step 3: Run App in the Background
-Note the database is still running.  But now run the same app as a deamon; note that the dockerfile
-automatically starts the rails server
+Note the database container is still running.  But now run the app as a deamon. 
+Note that the dockerfile automatically starts the rails server
 ```
 docker run -d \
     -p 3000:3000 \
@@ -139,7 +141,7 @@ docker run -d \
     -v $PWD:/usr/src/app \
     example_tag
 ```
-skdjflsdkjf sldkjf lskdfj lskdfj lskdfj lskdfj lskdfjlsdf lskdfj s
+Once again you can access the page from the browser at localhost:3000
 ## Cleanup
 shut down all the running containers
 ```
@@ -167,9 +169,9 @@ docker-compose up                       # start both
 docker-compose ps                       # see the list
 docker-compose stop                     # from another tab?
 
-docker ps -a                    # see all containers
-docker stop $(docker ps -a -q)  # stop all containers
-docker rm $(docker ps -a -q)    # remove all containers
+docker ps -a                            # see all containers
+docker stop $(docker ps -a -q)          # stop all containers
+docker rm $(docker ps -a -q)            # remove all containers
 
 docker-compose up -d                    # deamonize
 docker-compose stop                     # to stop deamon(s)
