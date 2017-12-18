@@ -146,6 +146,10 @@ shut down all the running containers
 docker ps -a                    # see all containers
 docker stop $(docker ps -a -q)  # stop all containers
 docker rm $(docker ps -a -q)    # remove all containers
+docker network rm example_net   # remove the network
+docker rmi example_tag          # remove the image
+docker ps -a                    # empty
+docker images                   # gone
 ```
 ## Step: Docker Compose
 Docker Compose uses the docker-compose.yml file to 
