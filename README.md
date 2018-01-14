@@ -152,6 +152,8 @@ docker network rm example_net   # remove the network
 docker rmi example_tag          # remove the image
 docker ps -a                    # empty
 docker images                   # gone
+
+docker rmi $(docker images | grep "<none>" | awk '{ print $3 }')
 ```
 ## Step: Docker Compose
 Docker Compose uses the docker-compose.yml file to 
